@@ -1,0 +1,35 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    name: Build .saver and configurator
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Toolchain info
+        run: |
+          sw_vers
+          xcodebuild -version
+          swift --version
+
+      - name: Build screensaver bundle
+        run: make build
+
+      - name: Build configurator .app
+        run: make app
+
+      - name: Verify outputs
+        run: |
+          file build/MatrixGrey.saver/Contents/MacOS/MatrixGrey
+          file build/MatrixGreyConfig.app/Contents/MacOS/MatrixGreyConfig
+          codesign -dv build/MatrixGrey.saver
+          codesign -dv build/MatrixGreyConfig.app

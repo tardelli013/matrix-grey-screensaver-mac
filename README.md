@@ -1,5 +1,7 @@
 # Matrix Grey
 
+[![Build](https://github.com/tardelli013/matrix-grey-screensaver-mac/actions/workflows/build.yml/badge.svg)](https://github.com/tardelli013/matrix-grey-screensaver-mac/actions/workflows/build.yml)
+
 Protetor de tela para macOS no estilo Matrix, em escala de cinza.
 Bundle `.saver` nativo escrito em Swift sobre o framework `ScreenSaver`,
 com configurador próprio (CLI ou `.app`).
