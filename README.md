@@ -136,6 +136,9 @@ matrix-grey/
 ├── Resources/
 │   ├── Info.plist                    # bundle do .saver
 │   └── Configurator-Info.plist       # bundle do .app
+├── Tools/
+│   └── RenderPreview/
+│       └── main.swift                # gerador do docs/preview.png
 └── Makefile
 ```
 
