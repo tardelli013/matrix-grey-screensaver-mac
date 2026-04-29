@@ -6,6 +6,8 @@ Protetor de tela para macOS no estilo Matrix, em escala de cinza.
 Bundle `.saver` nativo escrito em Swift sobre o framework `ScreenSaver`,
 com configurador próprio (CLI ou `.app`).
 
+![Preview do screensaver](docs/preview.png)
+
 ## Pré-requisitos
 
 - macOS 13 (Ventura) ou superior, Apple Silicon
@@ -24,6 +26,7 @@ make app          # empacota MatrixGreyConfig.app em build/
 make install-app  # instala MatrixGreyConfig.app em ~/Applications/
 make uninstall    # remove o .saver e o .app instalados (preferências ficam)
 make purge        # uninstall + apaga preferências + clean
+make preview      # gera docs/preview.png (snapshot estático do efeito)
 make clean        # remove build/
 ```
 

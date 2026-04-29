@@ -12,7 +12,7 @@ CONFIG_APP     := $(BUILD)/$(CONFIG_NAME).app
 CONFIG_SOURCES := Sources/Settings.swift Sources/ConfigureWindowController.swift Configurator/main.swift
 APPS_DIR       := $(HOME)/Applications
 
-.PHONY: all build install reinstall configure app install-app uninstall purge clean
+.PHONY: all build install reinstall configure app install-app uninstall purge clean preview
 
 all: build
 
@@ -98,6 +98,27 @@ purge: uninstall clean
 	@defaults delete com.tardelli.MatrixGreyConfig 2>/dev/null || true
 	@echo "Removed preferences for com.tardelli.MatrixGrey and com.tardelli.MatrixGreyConfig"
 	@echo "Project fully purged from this machine."
+
+PREVIEW_NAME    := RenderPreview
+PREVIEW_BIN     := $(BUILD)/$(PREVIEW_NAME)
+PREVIEW_SOURCES := Sources/Glyphs.swift Sources/MatrixColumn.swift Tools/RenderPreview/main.swift
+PREVIEW_OUT     := docs/preview.png
+
+preview: $(PREVIEW_OUT)
+
+$(PREVIEW_OUT): $(PREVIEW_BIN)
+	@mkdir -p docs
+	"$(PREVIEW_BIN)" "$(PREVIEW_OUT)"
+
+$(PREVIEW_BIN): $(PREVIEW_SOURCES)
+	@mkdir -p "$(BUILD)"
+	swiftc \
+		-target $(TARGET) \
+		-framework AppKit \
+		-framework Foundation \
+		-O \
+		-o "$(PREVIEW_BIN)" \
+		$(PREVIEW_SOURCES)
 
 clean:
 	rm -rf "$(BUILD)"
